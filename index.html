@@ -3,239 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livro Vivo Studio | Transforme seu livro em vídeo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Livro Vivo Studio | Sua história em movimento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-neon: #00FF9D;
-            --bg-dark: #050505;
-            --card-bg: #0d0d0d;
-            --text-gray: #b0b0b0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --neon: #00FF9D;
+            --bg: #000000;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg);
             color: white;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Manchas de Luz Neon no Fundo */
+        .blur-bg {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.12) 0%, transparent 70%);
+            filter: blur(100px);
+            z-index: -1;
+            top: -200px;
+            left: -100px;
         }
 
-        .neon-text {
-            color: var(--primary-neon);
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
-        }
-
-        .btn-neon {
-            background-color: var(--primary-neon);
-            color: black;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-neon:hover {
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.6);
-            transform: translateY(-2px);
+        .blur-bg-right {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.08) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
+            bottom: -100px;
+            right: -100px;
         }
 
         header {
-            padding: 120px 0;
+            padding: 120px 20px 60px;
             text-align: center;
-            background: radial-gradient(circle at top, #00ff9d1a 0%, transparent 70%);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.2rem);
             line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
         }
 
-        .subheadline {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            max-width: 700px;
+        .highlight { 
+            color: var(--neon); 
+            text-shadow: 0 0 25px rgba(0, 255, 157, 0.5); 
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            max-width: 600px;
             margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
-        section {
-            padding: 80px 0;
+        .btn-neon {
+            background: var(--neon);
+            color: black;
+            padding: 20px 45px;
+            border-radius: 100px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 40px rgba(0, 255, 157, 0.3);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-neon:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 60px rgba(0, 255, 157, 0.5); 
         }
 
         .section-title {
             text-align: center;
+            font-family: 'Syne', sans-serif;
             font-size: 2.5rem;
-            margin-bottom: 50px;
+            margin: 100px 0 50px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            padding: 0 20px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid #222;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            border-color: var(--primary-neon);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-neon);
-        }
-
-        .pricing-card {
-            border: 2px solid #222;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--primary-neon);
-            transform: scale(1.05);
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            padding: 48px;
+            border-radius: 32px;
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
-        .price {
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 20px 0;
-            display: block;
+        .card:hover { 
+            border-color: var(--neon); 
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-10px);
         }
 
-        footer {
-            text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid #222;
-            margin-top: 50px;
-            background: linear-gradient(0deg, #00ff9d0a 0%, transparent 100%);
+        .card h3 { 
+            font-family: 'Syne', sans-serif; 
+            color: var(--neon); 
+            font-size: 1.8rem;
+            margin-top: 0; 
+        }
+
+        .price { 
+            font-size: 3rem; 
+            font-weight: 800; 
+            display: block; 
+            margin: 25px 0; 
+            font-family: 'Syne', sans-serif;
+        }
+
+        .featured {
+            border: 1px solid var(--neon);
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 80px 20px; 
+            border-top: 1px solid var(--border);
+            color: #666;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .pricing-card.featured { transform: scale(1); }
+            h1 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
-
+    <div class="blur-bg"></div>
+    <div class="blur-bg-right"></div>
+    
     <header>
-        <div class="container">
-            <h1>Seu livro já foi escrito.<br><span class="neon-text">Agora ele pode ganhar vida.</span></h1>
-            <p class="subheadline">Transformamos histórias em experiências audiovisuais com Inteligência Artificial, criando personagens e episódios estratégicos para suas redes sociais.</p>
-            <a href="https://api.whatsapp.com/send?phone=5511976143060&text=Ol%C3%A1%21+Posso+ajudar%3F" class="btn-neon">CRIAR O TRAILER DO MEU LIVRO</a>
-        </div>
+        <h1>Seu livro já foi escrito. <br><span class="highlight">Agora ele precisa ganhar vida.</span></h1>
+        <p class="subtitle">Transformamos histórias em experiências audiovisuais cinematográficas com Inteligência Artificial.</p>
+        <a href="https://api.whatsapp.com/send?phone=5511976143060&text=Olá!+Vi+o+site+e+quero+dar+vida+ao+meu+livro." class="btn-neon">Quero transformar meu livro</a>
     </header>
 
-    <section>
-        <div class="container">
-            <h2 class="section-title">A maioria dos livros <span class="neon-text">morre na estante.</span></h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>O Problema</h3>
-                    <p>Milhares de livros são publicados, mas a maioria desaparece no ruído digital. Sem uma estratégia de vídeo envolvente, sua obra permanece invisível para os leitores modernos.</p>
-                </div>
-                <div class="card">
-                    <h3>A Solução</h3>
-                    <p>O <strong>Livro Vivo Studio</strong> utiliza IA de ponta para identificar os ganchos da sua história e transformá-los no formato que domina a internet hoje: o vídeo vertical.</p>
-                </div>
-            </div>
+    <h2 class="section-title">Nossos Pacotes</h2>
+    
+    <div class="grid">
+        <div class="card">
+            <h3>Essência</h3>
+            <p>Ideal para impacto rápido e anúncios nas redes sociais.</p>
+            <ul style="list-style: none; padding: 0; color: #aaa; line-height: 2;">
+                <li>✓ 1 Vídeo Trailer (60s)</li>
+                <li>✓ Roteiro Estratégico</li>
+                <li>✓ Otimizado para Vertical</li>
+            </ul>
         </div>
-    </section>
 
-    <section style="background-color: #080808;">
-        <div class="container">
-            <h2 class="section-title">Como Funciona</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3 class="neon-text">01. Essência</h3>
-                    <p>Analisamos seu livro para identificar os personagens centrais e os momentos de maior impacto narrativo.</p>
-                </div>
-                <div class="card">
-                    <h3 class="neon-text">02. Roteiro</h3>
-                    <p>Criamos roteiros estratégicos adaptados para viralização no TikTok, Reels e Shorts.</p>
-                </div>
-                <div class="card">
-                    <h3 class="neon-text">03. Produção</h3>
-                    <p>Geramos cenas animadas, narrações e efeitos visuais que trazem sua obra para a realidade.</p>
-                </div>
-            </div>
+        <div class="card featured">
+            <div style="background: var(--neon); color: black; position: absolute; top: 20px; right: -35px; padding: 5px 40px; transform: rotate(45deg); font-size: 0.7rem; font-weight: 900;">MAIS POPULAR</div>
+            <h3>Livro Vivo</h3>
+            <span class="price">R$ 2.500</span>
+            <p>Sua obra vira uma série audiovisual completa.</p>
+            <ul style="list-style: none; padding: 0; color: #aaa; line-height: 2; margin-bottom: 30px;">
+                <li>✓ 5 Episódios Audiovisuais</li>
+                <li>✓ Personagens com IA</li>
+                <li>✓ Edição Cinematográfica</li>
+            </ul>
+            <a href="https://api.whatsapp.com/send?phone=5511976143060" class="btn-neon" style="padding: 15px 30px; font-size: 0.8rem; width: 100%; box-sizing: border-box; text-align: center;">Transformar meu Livro</a>
         </div>
-    </section>
 
-    <section id="pacotes">
-        <div class="container">
-            <h2 class="section-title">Nossos Pacotes</h2>
-            <div class="grid">
-                <div class="card pricing-card">
-                    <div>
-                        <h3>Trailer do Livro</h3>
-                        <p>Ideal para impacto rápido e anúncios.</p>
-                        <span class="price">R$ 497</span>
-                        <ul style="list-style: none; margin-bottom: 30px; color: var(--text-gray); text-align: left;">
-                            <li>✓ 1 Vídeo Trailer (até 60s)</li>
-                            <li>✓ Roteiro Curto Estratégico</li>
-                            <li>✓ Otimizado para Vertical</li>
-                            <li>✓ 1 Cenário criado com IA</li>
-                        </ul>
-                    </div>
-                    <a href="https://api.whatsapp.com/send?phone=5511976143060&text=Ol%C3%A1%21+Quero+saber+mais+sobre+o+Trailer+do+Livro." class="btn-neon" style="background: transparent; border: 1px solid var(--primary-neon); color: white;">Escolher Trailer</a>
-                </div>
-                <div class="card pricing-card featured">
-                    <div>
-                        <h3 class="neon-text">Livro Vivo</h3>
-                        <p>Sua obra vira uma série audiovisual.</p>
-                        <span class="price">a partir de R$ 2.500</span>
-                        <ul style="list-style: none; margin-bottom: 30px; color: var(--text-gray); text-align: left;">
-                            <li>✓ 5 Episódios Audiovisuais</li>
-                            <li>✓ Personagens Recorrentes com IA</li>
-                            <li>✓ Edição Cinematográfica</li>
-                            <li>✓ Consultoria de Lançamento</li>
-                        </ul>
-                    </div>
-                    <a href="https://api.whatsapp.com/send?phone=5511976143060&text=Ol%C3%A1%21+Quero+saber+mais+sobre+o+pacote+Livro+Vivo." class="btn-neon">Transformar meu Livro</a>
-                </div>
-            </div>
+        <div class="card">
+            <h3>Premium</h3>
+            <p>A experiência definitiva de lançamento literário.</p>
+            <ul style="list-style: none; padding: 0; color: #aaa; line-height: 2;">
+                <li>✓ Série Completa (10+ ep)</li>
+                <li>✓ Landing Page Exclusiva</li>
+                <li>✓ Consultoria de Lançamento</li>
+            </ul>
         </div>
-    </section>
+    </div>
 
     <footer>
-        <div class="container" id="contato">
-            <h2 style="margin-bottom: 20px;">Seu livro merece ser visto.</h2>
-            <p style="margin-bottom: 30px; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">Histórias não foram feitas para ficar paradas. Elas foram feitas para ganhar o mundo em novos formatos.</p>
-            <a href="https://api.whatsapp.com/send?phone=5511976143060&text=Ol%C3%A1%21+Posso+ajudar%3F" class="btn-neon">Falar com um Consultor</a>
-            <p style="margin-top: 50px; font-size: 0.8rem; color: #444;">&copy; 2026 LIVRO VIVO Studio. Tecnologia e Storytelling.</p>
-        </div>
+        <p>© 2026 LIVRO VIVO Studio | Tecnologia & Storytelling</p>
     </footer>
-
 </body>
 </html>

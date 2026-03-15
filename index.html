@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livro Vivo Studio | Sua história em movimento</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon: #00FF9D;
             --bg: #000000;
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
+            --gradient-1: rgba(0, 255, 157, 0.1);
+            --gradient-2: rgba(0, 255, 157, 0.05);
         }
 
         body {
@@ -19,41 +21,32 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Manchas de Luz Neon no Fundo */
-        .blur-bg {
+        /* Efeitos de Fundo Dinâmico inspirado no modelo SaaS */
+        .gradient-bg {
             position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 255, 157, 0.12) 0%, transparent 70%);
-            filter: blur(100px);
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 10% 10%, var(--gradient-1), transparent 40%),
+                radial-gradient(circle at 90% 90%, var(--gradient-2), transparent 40%);
             z-index: -1;
-            top: -200px;
-            left: -100px;
-        }
-
-        .blur-bg-right {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 255, 157, 0.08) 0%, transparent 70%);
-            filter: blur(80px);
-            z-index: -1;
-            bottom: -100px;
-            right: -100px;
+            top: 0;
+            left: 0;
         }
 
         header {
-            padding: 120px 20px 60px;
+            padding: 140px 20px 80px;
             text-align: center;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4.2rem);
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 24px;
             letter-spacing: -2px;
@@ -61,13 +54,13 @@
 
         .highlight { 
             color: var(--neon); 
-            text-shadow: 0 0 25px rgba(0, 255, 157, 0.5); 
+            text-shadow: 0 0 30px rgba(0, 255, 157, 0.6); 
         }
 
         .subtitle {
             font-size: 1.25rem;
-            color: #a0a0a0;
-            max-width: 600px;
+            color: #b0b0b0;
+            max-width: 650px;
             margin: 0 auto 40px;
             line-height: 1.6;
         }
@@ -75,44 +68,49 @@
         .btn-neon {
             background: var(--neon);
             color: black;
-            padding: 20px 45px;
+            padding: 22px 50px;
             border-radius: 100px;
             font-weight: 800;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 10px 40px rgba(0, 255, 157, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 255, 157, 0.4);
             transition: all 0.4s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 1.1rem;
         }
 
         .btn-neon:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 15px 60px rgba(0, 255, 157, 0.5); 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 60px rgba(0, 255, 157, 0.7); 
+        }
+
+        .section {
+            padding: 120px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            margin: 100px 0 50px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            padding: 0 20px 100px;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 30px;
         }
 
         .card {
             background: var(--glass);
             backdrop-filter: blur(15px);
             border: 1px solid var(--border);
-            padding: 48px;
-            border-radius: 32px;
+            padding: 50px;
+            border-radius: 30px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -125,7 +123,7 @@
         }
 
         .card h3 { 
-            font-family: 'Syne', sans-serif; 
+            font-family: 'Unbounded', sans-serif; 
             color: var(--neon); 
             font-size: 1.8rem;
             margin-top: 0; 
@@ -136,30 +134,30 @@
             font-weight: 800; 
             display: block; 
             margin: 25px 0; 
-            font-family: 'Syne', sans-serif;
+            font-family: 'Unbounded', sans-serif;
         }
 
         .featured {
             border: 1px solid var(--neon);
-            box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
+            box-shadow: 0 0 50px rgba(0, 255, 157, 0.15);
         }
 
         footer { 
             text-align: center; 
-            padding: 80px 20px; 
+            padding: 100px 20px; 
             border-top: 1px solid var(--border);
-            color: #666;
-            font-size: 0.9rem;
+            color: #777;
+            font-size: 1rem;
         }
 
         @media (max-width: 768px) {
             h1 { font-size: 3rem; }
+            .section-title { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="blur-bg"></div>
-    <div class="blur-bg-right"></div>
+    <div class="gradient-bg"></div>
     
     <header>
         <h1>Seu livro já foi escrito. <br><span class="highlight">Agora ele precisa ganhar vida.</span></h1>
@@ -167,40 +165,41 @@
         <a href="https://api.whatsapp.com/send?phone=5511976143060&text=Olá!+Vi+o+site+e+quero+dar+vida+ao+meu+livro." class="btn-neon">Quero transformar meu livro</a>
     </header>
 
-    <h2 class="section-title">Nossos Pacotes</h2>
-    
-    <div class="grid">
-        <div class="card">
-            <h3>Essência</h3>
-            <p>Ideal para impacto rápido e anúncios nas redes sociais.</p>
-            <ul style="list-style: none; padding: 0; color: #aaa; line-height: 2;">
-                <li>✓ 1 Vídeo Trailer (60s)</li>
-                <li>✓ Roteiro Estratégico</li>
-                <li>✓ Otimizado para Vertical</li>
-            </ul>
-        </div>
+    <div class="section" id="pacotes">
+        <h2 class="section-title">Nossos Pacotes</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Essência</h3>
+                <p>Ideal para impacto rápido e anúncios nas redes sociais.</p>
+                <ul style="list-style: none; padding: 0; color: #b0b0b0; line-height: 2.2;">
+                    <li>✓ 1 Vídeo Trailer (60s)</li>
+                    <li>✓ Roteiro Estratégico</li>
+                    <li>✓ Otimizado para Vertical</li>
+                </ul>
+            </div>
 
-        <div class="card featured">
-            <div style="background: var(--neon); color: black; position: absolute; top: 20px; right: -35px; padding: 5px 40px; transform: rotate(45deg); font-size: 0.7rem; font-weight: 900;">MAIS POPULAR</div>
-            <h3>Livro Vivo</h3>
-            <span class="price">R$ 2.500</span>
-            <p>Sua obra vira uma série audiovisual completa.</p>
-            <ul style="list-style: none; padding: 0; color: #aaa; line-height: 2; margin-bottom: 30px;">
-                <li>✓ 5 Episódios Audiovisuais</li>
-                <li>✓ Personagens com IA</li>
-                <li>✓ Edição Cinematográfica</li>
-            </ul>
-            <a href="https://api.whatsapp.com/send?phone=5511976143060" class="btn-neon" style="padding: 15px 30px; font-size: 0.8rem; width: 100%; box-sizing: border-box; text-align: center;">Transformar meu Livro</a>
-        </div>
+            <div class="card featured">
+                <div style="background: var(--neon); color: black; position: absolute; top: 20px; right: -35px; padding: 5px 40px; transform: rotate(45deg); font-size: 0.7rem; font-weight: 900;">MAIS POPULAR</div>
+                <h3>Livro Vivo</h3>
+                <span class="price">R$ 2.500</span>
+                <p>Sua obra vira uma série audiovisual completa.</p>
+                <ul style="list-style: none; padding: 0; color: #b0b0b0; line-height: 2.2; margin-bottom: 30px;">
+                    <li>✓ 5 Episódios Audiovisuais</li>
+                    <li>✓ Personagens com IA</li>
+                    <li>✓ Edição Cinematográfica</li>
+                </ul>
+                <a href="https://api.whatsapp.com/send?phone=5511976143060" class="btn-neon" style="padding: 15px 30px; font-size: 0.9rem; width: 100%; box-sizing: border-box; text-align: center;">Transformar meu Livro</a>
+            </div>
 
-        <div class="card">
-            <h3>Premium</h3>
-            <p>A experiência definitiva de lançamento literário.</p>
-            <ul style="list-style: none; padding: 0; color: #aaa; line-height: 2;">
-                <li>✓ Série Completa (10+ ep)</li>
-                <li>✓ Landing Page Exclusiva</li>
-                <li>✓ Consultoria de Lançamento</li>
-            </ul>
+            <div class="card">
+                <h3>Premium</h3>
+                <p>A experiência definitiva de lançamento literário.</p>
+                <ul style="list-style: none; padding: 0; color: #b0b0b0; line-height: 2.2;">
+                    <li>✓ Série Completa (10+ ep)</li>
+                    <li>✓ Landing Page Exclusiva</li>
+                    <li>✓ Consultoria de Lançamento</li>
+                </ul>
+            </div>
         </div>
     </div>
 
